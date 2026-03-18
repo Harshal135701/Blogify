@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Layout */
+.main-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT IMAGE */
+.image-section {
+    flex: 1;
+    background: url('/images/blogbg.jpg') no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.image-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Overlay text */
+.overlay {
+    position: absolute;
+    bottom: 60px;
+    left: 50px;
+    color: white;
+    z-index: 2;
+}
+
+.overlay h1 {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.overlay p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* RIGHT SIDE */
+.form-section {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: radial-gradient(circle at top left, #e0f7fa, transparent 40%),
+        radial-gradient(circle at bottom right, #e1f5fe, transparent 40%),
+        #f8fafc;
+}
+
+/* FORM */
+.signin-form {
+    width: 360px;
+    padding: 40px;
+    position: relative;
+    z-index: 3;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.4);
+
+    position: relative;
+}
+
+/* Glow border */
+.signin-form::before {
+     pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+
+    padding: 1px;
+    background: linear-gradient(135deg, #00bcd4, transparent, #00bcd4);
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Heading */
+.signin-form h2 {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.signin-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* Inputs */
+.signin-form input {
+    width: 100%;
+    padding: 13px;
+
+    border-radius: 10px;
+    border: none;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    box-shadow: inset 0 0 0 1px #ddd;
+    transition: 0.25s;
+}
+
+.signin-form input:focus {
+    box-shadow:
+        inset 0 0 0 1px #00bcd4,
+        0 0 8px rgba(0, 188, 212, 0.2);
+}
+
+/* Button */
+.signin-form button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #00bcd4, #00838f);
+    color: white;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signin-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Error */
+.error {
+    color: #ff4d4d;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.image-section::before {
+    pointer-events: none;
+}
+.signin-form input,
+.signin-form button {
+    position: relative;
+    z-index: 2;
+}

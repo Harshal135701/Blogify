@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <link rel="stylesheet" href="/stylesheets/myblogs.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Blogify</div>
+
+        <ul class="nav-links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/allblogs">All Blogs</a></li>
+            <li><a href="/myblogs">My Blogs</a></li>
+            <li><a href="/aboutus">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Heading -->
+    <h2 class="heading">My Blogs</h2>
+
+    <% if (blogs.length === 0) { %>
+        <p class="no-blog">No blogs created yet</p>
+    <% } %>
+
+    <!-- Blog Grid -->
+    <div class="blog-container">
+        <% blogs.forEach(function(blog) { %>
+            <div class="blog-card">
+                <h3><%= blog.blogtitle %></h3>
+                <p><%= blog.blogcontent %></p>
+            </div>
+        <% }) %>
+    </div>
+
+</body>
+</html>

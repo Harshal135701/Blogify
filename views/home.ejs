@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="logo">Blogify</div>
+
+    <ul class="nav-links">
+        <li><a href="/home">Home</a></li>
+            <li><a href="/allblogs">All Blogs</a></li>
+            <li><a href="/myblogs">My Blogs</a></li>
+            <li><a href="#">About</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <img src="<%= user.profilepicture %>" alt="profile">
+        <h2><%= user.username %></h2>
+        <p>Start sharing your thoughts 🚀</p>
+    </div>
+
+    <!-- Blog Form Card -->
+    <div class="form-card">
+        <h3>Create Blog</h3>
+
+        <form action="/home" method="post">
+            <input type="text" name="blogtitle" placeholder="Enter blog title..." required>
+
+            <textarea name="blogcontent" rows="5" placeholder="Write your blog here..." required></textarea>
+
+            <% if(typeof(error) != 'undefined'){ %>
+                <p class="error"><%= error %></p>
+            <% } %>
+
+            <button type="submit">Publish</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+
+</html>

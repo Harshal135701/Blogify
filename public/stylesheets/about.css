@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #222;
+    padding: 15px 30px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #ccc;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #fff;
+}
+
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #00bcd4;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Container */
+.about-container {
+    width: 80%;
+    margin: 40px auto;
+}
+
+/* About Card */
+.about-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-card h1 {
+    margin-bottom: 15px;
+}
+
+.about-card p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Features */
+.features {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Feature Box */
+.feature-box {
+    flex: 1;
+    min-width: 220px;
+
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+.feature-box h3 {
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    color: #666;
+}

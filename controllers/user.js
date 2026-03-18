@@ -1,0 +1,114 @@
+const userModel = require('../models/user')
+const blogSchema = require('../models/blog')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+var jwt = require('jsonwebtoken');
+
+async function signupcontroller(req, res) {
+    try {
+        const { username, email, password } = req.body;
+        if (!email || !password || !username) {
+            return res.status(400).render('signup', {
+                error: "Fill data correctly"
+            })
+        }
+        const userExist = await userModel.findOne({ email })
+        if (userExist) {
+            return res.status(409).render('signup', {
+                error: "Issue while signup"
+            })
+        }
+        const bcryptedpassword = await bcrypt.hash(password, saltRounds)
+
+        let profilepic;
+
+        if (req.file) {
+            profilepic = req.file.filename;
+        }
+
+        await userModel.create({
+            username,
+            email,
+            password: bcryptedpassword,
+            profilepicture: profilepic
+        })
+
+        return res.redirect('/signin')
+    }
+    catch (err) {
+        res.render('signup', {
+            error: err.message
+        })
+    }
+}
+
+async function signincontroller(req, res) {
+    try {
+        const { email, password } = req.body
+        if (!email || !password) {
+            return res.status(400).render('signin', {
+                error: "Fill data correctly"
+            })
+        }
+        const userExist = await userModel.findOne({ email })
+        if (!userExist) {
+            return res.status(404).render('signin', {
+                error: "The user not exist"
+            })
+        }
+        const passwordCorrectOrNot = await bcrypt.compare(password, userExist.password)
+
+        if (!passwordCorrectOrNot) {
+            return res.status(404).render('signin', {
+                error: "The password is incorrect"
+            })
+        }
+
+        const token = jwt.sign(
+            { id: userExist._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        )
+
+        res.cookie("token", token, {
+            httpOnly: true
+        })
+
+        return res.redirect('/home')
+    }
+    catch (err) {
+        res.render('signin', {
+            error: err.message
+        })
+    }
+}
+
+async function homeblogdatacontroller(req, res) {
+    try {
+        const { blogtitle, blogcontent } = req.body;
+        if (!blogtitle || !blogcontent) {
+            return res.status(400).render('home', {
+                error: "Error while blog creation",
+                user: req.user
+            })
+        }
+        await blogSchema.create({
+            createdby: req.user._id,
+            blogtitle,
+            blogcontent
+        })
+        res.redirect('/home')
+    }
+    catch (err) {
+        return res.render('home', {
+            error: err.message,
+            user: req.user
+        })
+    }
+}
+
+module.exports = {
+    signupcontroller,
+    signincontroller,
+    homeblogdatacontroller,
+}

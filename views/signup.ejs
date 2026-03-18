@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css">
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <!-- Left Image Section -->
+        <div class="image-section">
+            <div class="overlay">
+                <h1>Welcome to Blogify</h1>
+                <p>Share your thoughts with the world ✍️</p>
+            </div>
+        </div>
+
+        <!-- Right Form Section -->
+        <div class="form-section">
+
+            <form action="/signup" method="post" enctype="multipart/form-data" class="signup-form">
+
+                <h2>Create Account</h2>
+
+                <% if(typeof(error)!=='undefined' ){%>
+                    <p class="error">
+                        <%=error%>
+                    </p>
+                <%}%>
+
+                <label>Name</label>
+                <input type="text" name="username" placeholder="Enter your name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+
+                <label>Profile Picture</label>
+                <input type="file" name="profilepicture">
+
+                <button type="submit">Sign Up</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
