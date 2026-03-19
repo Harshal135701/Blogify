@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,19 +25,30 @@
     <!-- Page Heading -->
     <h2 class="heading">All Blogs</h2>
 
-    <% if (blogs.length === 0) { %>
+    <% if (blogs.length===0) { %>
         <p class="no-blog">No blogs created yet</p>
-    <% } %>
+        <% } %>
 
-    <!-- Blog Grid -->
-    <div class="blog-container">
-        <% blogs.forEach(function(blog) { %>
-            <div class="blog-card">
-                <h3><%= blog.blogtitle %></h3>
-                <p><%= blog.blogcontent %></p>
+            <!-- Blog Grid -->
+            <div class="blog-container">
+                <% blogs.forEach(function(blog) { %>
+                    <div class="blog-card">
+                        <img src="<%= blog.blogpicture %>" width="100px" height="100px" />
+                        <h3>
+                            <%= blog.blogtitle %>
+                        </h3>
+                        <br>
+                        <p>Likes :<%=blog.likes%>
+                        </p>
+                        <p>comments :<%=blog.comments.length%>
+                        </p>
+                        <br>
+
+                        <a href="/blog/<%=blog._id%>"><button>View blog</button></a>
+                    </div>
+                    <% }) %>
             </div>
-        <% }) %>
-    </div>
 
 </body>
+
 </html>

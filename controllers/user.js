@@ -83,32 +83,10 @@ async function signincontroller(req, res) {
     }
 }
 
-async function homeblogdatacontroller(req, res) {
-    try {
-        const { blogtitle, blogcontent } = req.body;
-        if (!blogtitle || !blogcontent) {
-            return res.status(400).render('home', {
-                error: "Error while blog creation",
-                user: req.user
-            })
-        }
-        await blogSchema.create({
-            createdby: req.user._id,
-            blogtitle,
-            blogcontent
-        })
-        res.redirect('/home')
-    }
-    catch (err) {
-        return res.render('home', {
-            error: err.message,
-            user: req.user
-        })
-    }
-}
+
 
 module.exports = {
     signupcontroller,
     signincontroller,
-    homeblogdatacontroller,
+    
 }

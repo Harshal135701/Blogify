@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/fullblog.css">
+</head>
+
+<body>
+    <a href="/home" class="back-btn">Back</a>
+    <br>
+    <div class="main-container">
+
+        <!-- LEFT -->
+        <div class="left-section">
+            <h2>
+                <%=blog.blogtitle%>
+            </h2>
+
+            <p class="content">
+                <%=blog.blogcontent%>
+            </p>
+            <div class="image-wrapper">
+                <img src="<%= blog.blogpicture %>" class="blog-image" />
+            </div>
+            <div class="like-section">
+                <p class="like-count">❤️ <%= blog.likes %> Likes</p>
+
+                <form action="/blog/<%=blog._id%>/like" method="post">
+                    <input type="submit" value="Like">
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-section">
+
+            <form class="comment-form" action="/blog/<%=blog._id%>/comment" method="post">
+                <input type="text" name="text" placeholder="Write a comment..." required>
+                <button type="submit">Post</button>
+            </form>
+
+            <div class="comment-list">
+                <% if(blog.comments.length===0){ %>
+                    <p class="no-comment">No comments yet</p>
+                    <% } %>
+
+                        <% blog.comments.forEach(function(comment){ %>
+                            <div class="comment">
+                                <p>
+                                    <%=comment.text%>
+                                </p>
+                            </div>
+                            <% }) %>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

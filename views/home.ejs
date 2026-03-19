@@ -16,9 +16,13 @@
         <li><a href="/home">Home</a></li>
             <li><a href="/allblogs">All Blogs</a></li>
             <li><a href="/myblogs">My Blogs</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/aboutus">About Us</a></li>
     </ul>
 </nav>
+<div class="logout-container">
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+
 
 <div class="container">
 
@@ -33,7 +37,7 @@
     <div class="form-card">
         <h3>Create Blog</h3>
 
-        <form action="/home" method="post">
+        <form action="/home" method="post" enctype="multipart/form-data"> 
             <input type="text" name="blogtitle" placeholder="Enter blog title..." required>
 
             <textarea name="blogcontent" rows="5" placeholder="Write your blog here..." required></textarea>
@@ -42,6 +46,9 @@
                 <p class="error"><%= error %></p>
             <% } %>
 
+            <label>Blog picture</label>
+            <input type="file" name="blogpicture">
+            
             <button type="submit">Publish</button>
         </form>
     </div>

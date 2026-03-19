@@ -3,6 +3,7 @@ const router = Router()
 const userModel = require('../models/user')
 const blogSchema = require('../models/blog')
 const authentication = require('../middlewares/authentication')
+const blogpic = require('../middlewares/blogpicture')
 
 router.get('/', (req, res) => {
     res.render('signup')
@@ -16,7 +17,7 @@ router.get('/signin', (req, res) => {
     res.render('signin')
 })
 
-router.get('/home', authentication, (req, res) => {
+router.get('/home', authentication, blogpic, (req, res) => {
     res.render('home', { user: req.user });
 })
 
@@ -37,9 +38,31 @@ router.get('/allblogs', authentication, async (req, res) => {
     )
 })
 
-router.get('/aboutus',(req,res)=>{
+router.get('/aboutus', (req, res) => {
     res.render('aboutus')
 })
 
+
+router.get('/blog/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const blogIs = await blogSchema.findById(id);
+        if (!blogIs) {
+            return res.status(404).render('blogNotFound');
+        }
+        return res.status(200).render('fullblog', {
+            blog: blogIs
+        })
+    }
+    catch (err) {
+        return res.status(400).render('blogNotFound');
+    }
+
+})
+
+router.get('/logout',(req,res)=>{
+    res.clearCookie('token');
+    return res.redirect('/signin')
+})
 
 module.exports = router

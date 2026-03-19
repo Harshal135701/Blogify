@@ -4,7 +4,7 @@ const userModel=require('../models/user')
 async function authentication(req,res,next){
     const token=req.cookies.token
     if(!token){
-        res.redirect('/signin')
+        return res.redirect('/signin')
     }
     try{
         const decode=jwt.verify(token,process.env.JWT_SECRET)
