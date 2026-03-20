@@ -23,7 +23,7 @@ async function signupcontroller(req, res) {
         let profilepic;
 
         if (req.file) {
-            profilepic = req.file.filename;
+            profilepic = '/uploads/profiles/' + req.file.filename;
         }
 
         await userModel.create({

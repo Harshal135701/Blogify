@@ -4,6 +4,7 @@ const userModel = require('../models/user')
 const blogSchema = require('../models/blog')
 const authentication = require('../middlewares/authentication')
 const blogpic = require('../middlewares/blogpicture')
+const authorization = require('../middlewares/authorization')
 
 router.get('/', (req, res) => {
     res.render('signup')
@@ -63,6 +64,11 @@ router.get('/blog/:id', async (req, res) => {
 router.get('/logout',(req,res)=>{
     res.clearCookie('token');
     return res.redirect('/signin')
+})
+
+router.get('/blog/:id/edit',authentication,authorization,async(req,res)=>{
+    const blogIs=await blogSchema.findById(req.params.id);
+    res.render('editblog',{blog:blogIs});
 })
 
 module.exports = router

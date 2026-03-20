@@ -45,6 +45,10 @@
                         <br>
 
                         <a href="/blog/<%=blog._id%>"><button>View blog</button></a>
+                        <a href="/blog/<%=blog._id%>/edit"><button>Edit blog</button></a>
+                        <form action="/blog/<%=blog._id%>?_method=DELETE" method="post">
+                            <button onclick="return confirm('Are you sure ?')">Delete</button>
+                        </form>
                     </div>
                     <% }) %>
             </div>

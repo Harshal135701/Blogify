@@ -92,8 +92,40 @@ async function commentblogcontroller(req, res) {
     }
 }
 
+async function handletheupdateddatacontroller(req, res) {
+    try {
+        const { blogtitle, blogcontent } = req.body;
+        await blogSchema.findByIdAndUpdate(req.params.id, {
+            blogtitle,
+            blogcontent
+        },
+            { new: true })
+        res.redirect('/allblogs');
+    }
+    catch (err) {
+        return res.status(500).render('blogNotFound');
+    }
+}
+
+async function deleteblogcontroller(req, res) {
+    try {
+        const blogIs = await blogSchema.findById(req.params.id);
+        if (!blogIs) {
+            return res.status(404).render('blogNotFound')
+        }
+        await blogSchema.findByIdAndDelete(req.params.id);
+        res.redirect('/allblogs');
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+}
+
 module.exports = {
     homeblogdatacontroller,
     likeblogcontroller,
-    commentblogcontroller
+    commentblogcontroller,
+    handletheupdateddatacontroller,
+    deleteblogcontroller,
 }
