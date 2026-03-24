@@ -1,42 +1,52 @@
 **Blogify**
 A fully functional backend for a blogging application built with Node.js, Express, and MongoDB, supporting authentication, authorization, and interactive features like likes and comments.
 
-Features
+## 🚀 Features
 
-1 - Authentication & Authorization
+### 🔐 Authentication & Authorization
 
-- User Signup & Login
-- Password hashing using bcrypt
-- Role-based access (User & Admin)
-- Admin can manage all blogs
-- Users can only modify their own blogs
+* User Signup & Login
+* Secure password hashing using bcrypt
+* JWT-based authentication (JSON Web Token)
+* Role-based access control (User & Admin)
+* Admin can manage all blogs
+* Users can only edit/delete their own blogs
 
-2 - Blog Management (CRUD)
+---
 
-- Create Blog
-- Read All Blogs
-- Read User’s Blogs
-- Edit Blog
-- Delete Blog
+### 📝 Blog Management (CRUD)
 
-3 - Interaction Features
+* Create new blogs
+* View all blogs
+* View individual blog details
+* View user-specific blogs
+* Edit existing blogs
+* Delete blogs
 
-- Like / Unlike Blogs
-- Comment on Blogs
-- View comments on each blog
+---
 
-4 - Security & Access Control
+### 💬 Interaction Features
 
-- Protected routes using middleware
-- Authorization checks for edit/delete
-- Clean API structure
+* Like / Unlike blogs
+* Comment on blogs
+* View all comments on each blog
 
-5 - Tech Stack
+---
 
-- Backend: Node.js, Express.js
-- Database: MongoDB
-- Authentication: JWT (JSON Web Token)
-- Password Hashing: bcrypt
+### 🛡️ Security & Access Control
+
+* Protected routes using middleware
+* Authorization checks for sensitive actions (edit/delete)
+* Clean and structured backend architecture
+
+---
+
+### ⚙️ Tech Stack
+
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB
+* **Authentication:** JWT (JSON Web Token)
+* **Password Security:** bcrypt
 
 Project Structure - 
 
@@ -65,9 +75,9 @@ Project Structure -
 ### Edit blog Feature
 ![Edit blogs](./assets/edit.png)
 
-## 🎥 Demo
+<!-- ## 🎥 Demo -->
 
-![Demo](./assets/gitForBloggingapp.gif)
+<!-- ![Demo](./assets/gitForBloggingapp.gif) -->
 
 **Installation & Setup**
 

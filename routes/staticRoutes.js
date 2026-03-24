@@ -23,20 +23,70 @@ router.get('/home', authentication, blogpic, (req, res) => {
 })
 
 router.get('/myblogs', authentication, async (req, res) => {
-    const blogs = await blogSchema.find({ createdby: req.user._id })
-    res.render('myblogs', {
-        user: req.user,
-        blogs
+    try {
+
+        const category = req.query.category;
+
+        const blogsCountArr = await blogSchema.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    count: { $sum: 1 }
+                }
+            }
+        ])
+
+        const blogCount = {}
+
+        blogsCountArr.forEach(element => {
+            blogCount[element._id] = element.count
+        });
+
+        const blogs = await blogSchema.find({ createdby: req.user._id })
+        return res.render('myblogs', {
+            user: req.user,
+            blogs,
+            blogCount,
+            category
+        }
+        )
     }
-    )
+    catch (err) {
+        return res.status(500).send(err.message)
+    }
 })
 
 router.get('/allblogs', authentication, async (req, res) => {
-    const blogs = await blogSchema.find({})
-    res.render('allblogs', {
-        blogs
+    try {
+
+        const category = req.query.category;
+
+        const blogsCountArr = await blogSchema.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    count: { $sum: 1 }
+                }
+            }
+        ])
+
+        const blogCount = {}
+
+        blogsCountArr.forEach(element => {
+            blogCount[element._id] = element.count
+        });
+
+        const blogs = await blogSchema.find({})
+        return res.render('allblogs', {
+            blogs,
+            blogCount,
+            category
+        }
+        )
     }
-    )
+    catch (err) {
+        return res.status(500).send(err.message)
+    }
 })
 
 router.get('/aboutus', (req, res) => {
@@ -61,14 +111,48 @@ router.get('/blog/:id', async (req, res) => {
 
 })
 
-router.get('/logout',(req,res)=>{
+router.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.redirect('/signin')
 })
 
-router.get('/blog/:id/edit',authentication,authorization,async(req,res)=>{
-    const blogIs=await blogSchema.findById(req.params.id);
-    res.render('editblog',{blog:blogIs});
+router.get('/blog/:id/edit', authentication, authorization, async (req, res) => {
+    const blogIs = await blogSchema.findById(req.params.id);
+    res.render('editblog', { blog: blogIs });
 })
+
+router.get("/blogs", authentication, async (req, res) => {
+    try {
+        const blogsCountArr = await blogSchema.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    count: { $sum: 1 }
+                }
+            }
+        ])
+
+        const blogCount = {}
+
+        blogsCountArr.forEach(element => {
+            blogCount[element._id] = element.count
+        });
+
+        const category = req.query.category;
+
+        let blogs;
+
+        if (category) {
+            blogs = await blogSchema.find({ category: category });
+        } else {
+            blogs = await blogSchema.find({});
+        }
+
+        return res.render('allblogs', { blogs, blogCount, category });
+    }
+    catch (err) {
+        return res.status(500).send(err.message)
+    }
+});
 
 module.exports = router

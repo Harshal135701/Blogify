@@ -15,4 +15,5 @@ router.post('/blog/:id/comment', authentication, commentblogcontroller)
 router.put('/blog/:id', authentication, authorization, handletheupdateddatacontroller);
 router.delete('/blog/:id',authentication,authorization,deleteblogcontroller)
 
+
 module.exports = router

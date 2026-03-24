@@ -7,8 +7,8 @@ const blog = require('../models/blog');
 
 async function homeblogdatacontroller(req, res) {
     try {
-        const { blogtitle, blogcontent } = req.body;
-        if (!blogtitle || !blogcontent) {
+        const { blogtitle, blogcontent, category } = req.body;
+        if (!blogtitle || !blogcontent || !category) {
             return res.status(400).render('home', {
                 error: "Error while blog creation",
                 user: req.user
@@ -25,7 +25,8 @@ async function homeblogdatacontroller(req, res) {
             createdby: req.user._id,
             blogtitle,
             blogcontent,
-            blogpicture
+            blogpicture,
+            category
         })
         res.redirect('/home')
     }

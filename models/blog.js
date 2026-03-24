@@ -41,6 +41,10 @@ const blogSchema = mongoose.Schema({
         type: String,
         default: '/uploads/blogs/blogdefault.jpeg'
     },
+    category:{
+        type:String,
+        required: true
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('blog', blogSchema)

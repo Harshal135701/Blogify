@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #eef2f3, #ffffff);
+    background: linear-gradient(135deg, #eef2f7, #dbe6f6);
 }
 
 /* Navbar */
@@ -19,94 +19,70 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    background-color: #222;
+    background-color: #111;
     padding: 15px 30px;
 }
-/* Container below navbar */
-.logout-container {
-    width: 85%;
-     margin: 10px 30px 0 auto;
 
-    display: flex;
-    justify-content: flex-end; /* pushes to right side */
-}
-
-/* Stylish Logout Button */
-.logout-btn {
-    padding: 8px 18px;
-
-    background: linear-gradient(135deg, #ff4d4d, #d63031);
-    color: white;
-
-    border-radius: 8px;
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* Hover */
-.logout-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    background: linear-gradient(135deg, #ff6b6b, #ff3b3b);
-}
-
-/* Click */
-.logout-btn:active {
-    transform: scale(0.95);
-}
-
-/* Logo */
 .logo {
     color: #fff;
     font-size: 22px;
     font-weight: bold;
 }
 
-/* Nav Links */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
 }
 
-.nav-links li a {
+.nav-links a {
     text-decoration: none;
-    color: #ccc;
-    font-size: 15px;
-    position: relative;
+    color: #bbb;
     transition: 0.3s;
 }
 
-/* Hover */
-.nav-links li a:hover {
+.nav-links a:hover {
     color: #fff;
 }
 
-/* Underline Animation */
-.nav-links li a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background: #00bcd4;
-    left: 0;
-    bottom: -4px;
+/* 🔥 Top Bar */
+.top-bar {
+    width: 85%;
+    margin: 20px auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar h2 {
+    font-size: 22px;
+    color: #333;
+}
+
+/* Logout */
+.logout-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+
+    background: linear-gradient(135deg, #ff4d4d, #d63031);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
     transition: 0.3s;
 }
 
-.nav-links li a:hover::after {
-    width: 100%;
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
 /* Container */
 .container {
     width: 85%;
-    margin: 40px auto;
+    margin: 20px auto 50px;
 
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -117,10 +93,15 @@ body {
 .profile-card {
     background: white;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 18px;
     text-align: center;
 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
 }
 
 .profile-card img {
@@ -130,7 +111,7 @@ body {
     object-fit: cover;
 }
 
-.profile-card h2 {
+.profile-card h3 {
     margin-top: 10px;
 }
 
@@ -143,9 +124,9 @@ body {
 .form-card {
     background: white;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 18px;
 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
 .form-card h3 {
@@ -154,20 +135,22 @@ body {
 
 /* Inputs */
 .form-card input,
-.form-card textarea {
+.form-card textarea,
+.form-card select {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
 
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
 
     outline: none;
     transition: 0.2s;
 }
 
 .form-card input:focus,
-.form-card textarea:focus {
+.form-card textarea:focus,
+.form-card select:focus {
     border-color: #00bcd4;
 }
 
@@ -176,23 +159,26 @@ body {
     width: 100%;
     padding: 12px;
 
-    background: #111;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #00bcd4, #4caf50);
     color: white;
 
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
 
+    cursor: pointer;
     transition: 0.3s;
 }
 
 .form-card button:hover {
-    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 /* Error */
 .error {
     color: red;
     font-size: 14px;
-    margin-bottom: 10px;
 }

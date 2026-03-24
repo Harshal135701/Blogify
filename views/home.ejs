@@ -9,53 +9,66 @@
 </head>
 
 <body>
-<nav class="navbar">
-    <div class="logo">Blogify</div>
 
-    <ul class="nav-links">
-        <li><a href="/home">Home</a></li>
-            <li><a href="/allblogs">All Blogs</a></li>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Blogify</div>
+
+        <ul class="nav-links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/blogs">All Blogs</a></li>
             <li><a href="/myblogs">My Blogs</a></li>
             <li><a href="/aboutus">About Us</a></li>
-    </ul>
-</nav>
-<div class="logout-container">
-    <a href="/logout" class="logout-btn">Logout</a>
-</div>
+        </ul>
+    </nav>
 
-
-<div class="container">
-
-    <!-- Profile Card -->
-    <div class="profile-card">
-        <img src="<%= user.profilepicture %>" alt="profile">
-        
-        <h2><%= user.username %></h2>
-        <p>Start sharing your thoughts 🚀</p>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h2>Welcome, <%= user.username %> 👋</h2>
+        <a href="/logout" class="logout-btn">Logout</a>
     </div>
 
-    <!-- Blog Form Card -->
-    <div class="form-card">
-        <h3>Create Blog</h3>
+    <!-- Main Container -->
+    <div class="container">
 
-        <form action="/home" method="post" enctype="multipart/form-data"> 
-            <input type="text" name="blogtitle" placeholder="Enter blog title..." required>
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <img src="<%= user.profilepicture %>" alt="profile">
 
-            <textarea name="blogcontent" rows="5" placeholder="Write your blog here..." required></textarea>
+            <h3><%= user.username %></h3>
+            <p>Start sharing your thoughts 🚀</p>
+        </div>
 
-            <% if(typeof(error) != 'undefined'){ %>
-                <p class="error"><%= error %></p>
-            <% } %>
+        <!-- Form Card -->
+        <div class="form-card">
+            <h3>Create Blog</h3>
 
-            <label>Blog picture</label>
-            <input type="file" name="blogpicture">
-            
-            <button type="submit">Publish</button>
-        </form>
+            <form action="/home" method="post" enctype="multipart/form-data">
+
+                <input type="text" name="blogtitle" placeholder="Enter blog title..." required>
+
+                <select name="category" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="travel">Travel</option>
+                    <option value="tech">Technical</option>
+                    <option value="food">Food</option>
+                    <option value="lifestyle">Lifestyle</option>
+                </select>
+
+                <textarea name="blogcontent" rows="5" placeholder="Write your blog here..." required></textarea>
+
+                <% if(typeof(error) != 'undefined'){ %>
+                    <p class="error"><%= error %></p>
+                <% } %>
+
+                <input type="file" name="blogpicture">
+
+                <button type="submit">Publish Blog</button>
+
+            </form>
+        </div>
+
     </div>
-
-</div>
 
 </body>
-
 </html>
