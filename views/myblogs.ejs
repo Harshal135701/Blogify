@@ -25,28 +25,7 @@
     <!-- Heading -->
     <h2 class="heading">My Blogs</h2>
 
-    <!-- 🔥 Category Bar (fixed UI) -->
-    <div class="category-bar">
-    <a href="/blogs" class="<%= !category ? 'active' : '' %>">
-        All
-    </a>
-
-    <a href="/blogs?category=travel" class="<%= category === 'travel' ? 'active' : '' %>">
-        Travel (<%= blogCount.travel || 0 %>)
-    </a>
-
-    <a href="/blogs?category=tech" class="<%= category === 'tech' ? 'active' : '' %>">
-        Tech (<%= blogCount.tech || 0 %>)
-    </a>
-
-    <a href="/blogs?category=food" class="<%= category === 'food' ? 'active' : '' %>">
-        Food (<%= blogCount.food || 0 %>)
-    </a>
-
-    <a href="/blogs?category=lifestyle" class="<%= category === 'lifestyle' ? 'active' : '' %>">
-        Lifestyle (<%= blogCount.lifestyle || 0 %>)
-    </a>
-</div>
+   
 
     <% if (blogs.length === 0) { %>
         <p class="no-blog">No blogs created yet</p>
