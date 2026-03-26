@@ -1,6 +1,5 @@
 **Blogify**
 A fully functional backend for a blogging application built with Node.js, Express, and MongoDB, supporting authentication, authorization, and interactive features like likes and comments.
-
 ## 🚀 Features
 
 ### 🔐 Authentication & Authorization
@@ -25,6 +24,16 @@ A fully functional backend for a blogging application built with Node.js, Expres
 
 ---
 
+### 🔍 Search & Filtering (NEW ✨)
+
+* Search blogs by title using MongoDB text index
+* Filter blogs by category (Travel, Tech, Food, Lifestyle)
+* Combined filtering (Search + Category together)
+* Dynamic query building in backend
+* Clean and responsive UI for filters and search
+
+---
+
 ### 💬 Interaction Features
 
 * Like / Unlike blogs
@@ -39,7 +48,6 @@ A fully functional backend for a blogging application built with Node.js, Expres
 * Authorization checks for sensitive actions (edit/delete)
 * Clean and structured backend architecture
 
----
 
 ### ⚙️ Tech Stack
 

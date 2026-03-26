@@ -123,6 +123,9 @@ router.get('/blog/:id/edit', authentication, authorization, async (req, res) => 
 
 router.get("/blogs", authentication, async (req, res) => {
     try {
+        const { category, search } = req.query;
+
+        // here we are couting the category of blogs using group aggregate 
         const blogsCountArr = await blogSchema.aggregate([
             {
                 $group: {
@@ -130,28 +133,36 @@ router.get("/blogs", authentication, async (req, res) => {
                     count: { $sum: 1 }
                 }
             }
-        ])
+        ]);
 
-        const blogCount = {}
-
-        blogsCountArr.forEach(element => {
-            blogCount[element._id] = element.count
+        // We are converting arr to obj
+        const blogCount = {};
+        blogsCountArr.forEach(el => {
+            blogCount[el._id] = el.count;
         });
 
-        const category = req.query.category;
-
-        let blogs;
+        let query = {};
 
         if (category) {
-            blogs = await blogSchema.find({ category: category });
-        } else {
-            blogs = await blogSchema.find({});
+            query.category = category;
         }
 
-        return res.render('allblogs', { blogs, blogCount, category });
-    }
-    catch (err) {
-        return res.status(500).send(err.message)
+    //    $text -> the searching based on text 
+    // $seach -> what to search 
+        if (search) {
+            query.$text = { $search: search };
+        }
+
+        const blogs = await blogSchema.find(query);
+
+        return res.render("allblogs", {
+            blogs,
+            blogCount,
+            category
+        });
+
+    } catch (err) {
+        return res.status(500).send(err.message);
     }
 });
 

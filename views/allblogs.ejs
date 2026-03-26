@@ -25,62 +25,69 @@
     <!-- Heading -->
     <h2 class="heading">All Blogs</h2>
 
-    <!-- Category Filter -->
-   <div class="category-bar">
-    <a href="/blogs" class="<%= !category ? 'active' : '' %>">
-        All
-    </a>
+    <!-- 🔥 Top Bar (Back + Categories) -->
+    <div class="top-bar">
+        <a href="/allblogs" class="back-btn">⬅ Back</a>
 
-    <a href="/blogs?category=travel" class="<%= category === 'travel' ? 'active' : '' %>">
-        Travel (<%= blogCount.travel || 0 %>)
-    </a>
+        <div class="category-bar">
+            <a href="/blogs" class="<%= !category ? 'active' : '' %>">
+                All (<%= blogs.length %>)
+            </a>
 
-    <a href="/blogs?category=tech" class="<%= category === 'tech' ? 'active' : '' %>">
-        Tech (<%= blogCount.tech || 0 %>)
-    </a>
+            <a href="/blogs?category=travel" class="<%= category === 'travel' ? 'active' : '' %>">
+                Travel (<%= blogCount.travel || 0 %>)
+            </a>
 
-    <a href="/blogs?category=food" class="<%= category === 'food' ? 'active' : '' %>">
-        Food (<%= blogCount.food || 0 %>)
-    </a>
+            <a href="/blogs?category=tech" class="<%= category === 'tech' ? 'active' : '' %>">
+                Tech (<%= blogCount.tech || 0 %>)
+            </a>
 
-    <a href="/blogs?category=lifestyle" class="<%= category === 'lifestyle' ? 'active' : '' %>">
-        Lifestyle (<%= blogCount.lifestyle || 0 %>)
-    </a>
-</div>
+            <a href="/blogs?category=food" class="<%= category === 'food' ? 'active' : '' %>">
+                Food (<%= blogCount.food || 0 %>)
+            </a>
 
-    <% if (blogs.length===0) { %>
+            <a href="/blogs?category=lifestyle" class="<%= category === 'lifestyle' ? 'active' : '' %>">
+                Lifestyle (<%= blogCount.lifestyle || 0 %>)
+            </a>
+        </div>
+    </div>
+
+    <!-- 🔍 Search Box -->
+    <form action="/blogs" method="GET" class="search-box">
+        <input type="text" name="search" placeholder="Search blogs..." />
+        <button type="submit">🔍</button>
+    </form>
+
+    <% if (blogs.length === 0) { %>
         <p class="no-blog">No blogs found</p>
-        <% } %>
+    <% } %>
 
-            <!-- Blog Grid -->
-            <div class="blog-container">
-                <% blogs.forEach(function(blog) { %>
-                    <div class="blog-card">
+    <!-- Blog Grid -->
+    <div class="blog-container">
+        <% blogs.forEach(function(blog) { %>
+            <div class="blog-card">
 
-                        <img src="<%= blog.blogpicture %>" />
+                <img src="<%= blog.blogpicture %>" />
 
-                        <h3>
-                            <%= blog.blogtitle %>
-                        </h3>
+                <h3><%= blog.blogtitle %></h3>
 
-                        <div class="meta">
-                            <span>❤️ <%= blog.likes %></span>
-                            <span>💬 <%= blog.comments.length %></span>
-                        </div>
+                <div class="meta">
+                    <span>❤️ <%= blog.likes %></span>
+                    <span>💬 <%= blog.comments.length %></span>
+                </div>
 
-                        <div class="btn-group">
-                            <a href="/blog/<%=blog._id%>"><button>View</button></a>
-                            <a href="/blog/<%=blog._id%>/edit"><button>Edit</button></a>
+                <div class="btn-group">
+                    <a href="/blog/<%=blog._id%>"><button>View</button></a>
+                    <a href="/blog/<%=blog._id%>/edit"><button>Edit</button></a>
 
-                            <form action="/blog/<%=blog._id%>?_method=DELETE" method="post">
-                                <button onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </div>
+                    <form action="/blog/<%=blog._id%>?_method=DELETE" method="post">
+                        <button onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </div>
 
-                    </div>
-                    <% }) %>
             </div>
+        <% }) %>
+    </div>
 
 </body>
-
 </html>
