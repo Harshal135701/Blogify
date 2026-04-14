@@ -24,7 +24,7 @@ A fully functional backend for a blogging application built with Node.js, Expres
 
 ---
 
-### 🔍 Search & Filtering (NEW ✨)
+### 🔍 Search & Filtering 
 
 * Search blogs by title using MongoDB text index
 * Filter blogs by category (Travel, Tech, Food, Lifestyle)
