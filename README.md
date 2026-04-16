@@ -68,6 +68,10 @@ Project Structure -
 
 ## 📸 Screenshots
 
+## 🎥 Demo
+
+![Demo](./assets/DemoVideo.gif)
+
 ### Signup API
 ![Signup](./assets/signup.png)
 
@@ -83,9 +87,6 @@ Project Structure -
 ### Edit blog Feature
 ![Edit blogs](./assets/edit.png)
 
-<!-- ## 🎥 Demo -->
-
-<!-- ![Demo](./assets/gitForBloggingapp.gif) -->
 
 **Installation & Setup**
 
